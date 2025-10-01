@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jorny — Sua jornada para uma mente mais leve</title>
+  <meta name="description" content="Jorny: acompanhe suas emoções, pratique autocuidado e encontre apoio." />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- ============================
+       HEADER / NAV
+       - Logo, menu e CTA (Entrar/Cadastrar fictício)
+     ============================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">Jorny <span class="leaf">🌿</span></div>
+        <div class="slogan">Sua jornada para uma mente mais leve.</div>
+      </div>
+
+      <nav class="main-nav" aria-label="menu principal">
+        <button class="nav-btn" data-target="#diary-section">Diário</button>
+        <button class="nav-btn" data-target="#autocare-section">Autocuidado</button>
+        <button class="nav-btn" data-target="#support-section">Apoio</button>
+        <button class="nav-btn" data-target="#community-section">Comunidade</button>
+        <button class="cta" id="cta-start">Começar Agora</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================
+       HERO
+     ============================ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Sua jornada para uma mente mais leve.</h1>
+      <p class="lead">Acompanhe suas emoções, descubra novas formas de cuidar da mente e encontre apoio quando precisar.</p>
+      <div class="hero-actions">
+        <button class="btn primary" id="hero-start">Começar Agora</button>
+        <button class="btn" id="hero-about">Saiba Mais</button>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ============================
+         DIÁRIO DE HUMOR
+         - botões de humor, campo de texto, salvar
+         - histórico (canvas) e listagem de entradas
+       ============================ -->
+    <section id="diary-section" class="container card">
+      <h2>Como você se sente hoje?</h2>
+      <p class="muted">Clique no emoji que representa seu humor e escreva algo se quiser.</p>
+
+      <form id="mood-form" class="mood-form" novalidate>
+        <!-- Botões de humor (valor armazenado em value) -->
+        <div class="mood-buttons" role="radiogroup" aria-label="Escolha seu humor">
+          <label class="mood">
+            <input type="radio" name="mood" value="5" required>
+            <span class="emoji">😀</span>
+            <span class="label">Muito Bem</span>
+          </label>
+          <label class="mood">
+            <input type="radio" name="mood" value="4">
+            <span class="emoji">🙂</span>
+            <span class="label">Bem</span>
+          </label>
+          <label class="mood">
+            <input type="radio" name="mood" value="3">
+            <span class="emoji">😐</span>
+            <span class="label">Neutro</span>
+          </label>
+          <label class="mood">
+            <input type="radio" name="mood" value="2">
+            <span class="emoji">☹️</span>
+            <span class="label">Triste</span>
+          </label>
+          <label class="mood">
+            <input type="radio" name="mood" value="1">
+            <span class="emoji">😢</span>
+            <span class="label">Muito Triste</span>
+          </label>
+        </div>
+
+        <label class="full">
+          <span>Escreva sobre o seu dia (opcional)</span>
+          <textarea id="mood-note" name="note" rows="3" placeholder="Desabafe aqui..."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Salvar meu humor</button>
+          <button type="button" class="btn" id="clear-today">Limpar</button>
+        </div>
+      </form>
+
+      <!-- Gráfico e lista -->
+      <div class="diary-bottom">
+        <div class="chart-card">
+          <h3>Histórico semanal</h3>
+          <!-- Canvas desenhado via JS para mostrar barras das últimas 7 entradas por data -->
+          <canvas id="mood-chart" width="600" height="160" aria-label="Gráfico do humor semanal"></canvas>
+        </div>
+        <div class="entries-card">
+          <h3>Entradas recentes</h3>
+          <ul id="entries-list" class="entries-list">
+            <!-- entradas inseridas dinamicamente -->
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         AUTOCUIDADO
+         - cards com sugestões aleatórias
+       ============================ -->
+    <section id="autocare-section" class="container card">
+      <h2>Autocuidado</h2>
+      <p class="muted">Pequenas práticas para cuidar da mente — rápidas e fáceis.</p>
+
+      <div class="autocare-grid" id="autocare-grid">
+        <!-- Cards preenchidos por JS -->
+      </div>
+
+      <div class="autocare-actions">
+        <button id="new-suggestion" class="btn">Quero outra sugestão</button>
+      </div>
+    </section>
+
+    <!-- ============================
+         APOIO
+         - contatos de emergência e mapa (embed opcional)
+       ============================ -->
+    <section id="support-section" class="container card">
+      <h2>Você não está sozinho(a)</h2>
+      <p class="muted">Contatos e locais de apoio. Se estiver em risco, ligue para os serviços de emergência imediatamente.</p>
+
+      <div class="support-grid">
+        <div class="support-list">
+          <h3>Contatos úteis</h3>
+          <ul>
+            <li><strong>CVV</strong> — 188</li>
+            <li><strong>SAMU</strong> — 192</li>
+            <li><strong>Polícia</strong> — 190</li>
+            <li><strong>CAPS / Centros locais</strong> — procure no mapa</li>
+          </ul>
+
+          <div class="support-actions">
+            <button id="panic-btn" class="btn danger">Preciso de Ajuda</button>
+            <button id="toggle-contacts" class="btn">Mostrar/Ocultar contatos locais</button>
+          </div>
+        </div>
+
+        <div class="support-map">
+          <h3>Mapa (OpenStreetMap)</h3>
+          <div class="map-placeholder">
+            <!-- Aqui poderia entrar um embed do OpenStreetMap / iframe.
+                 Para simplicidade offline, mostramos uma caixa informativa. -->
+            <p class="muted">Mapa interativo pode ser integrado com OpenStreetMap ou Google Maps (API).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         COMUNIDADE
+         - lista de posts (public, sem autenticação)
+       ============================ -->
+    <section id="community-section" class="container card">
+      <h2>Comunidade</h2>
+      <p class="muted">Compartilhe um desabafo curto. Seja gentil e respeitoso com os outros.</p>
+
+      <form id="post-form" class="post-form" novalidate>
+        <label>
+          Nome (apenas para exibição)
+          <input id="post-name" type="text" placeholder="Seu nome (opcional)">
+        </label>
+        <label>
+          Escreva seu desabafo (máx 280 caracteres)
+          <textarea id="post-text" maxlength="280" rows="3" placeholder="Como você está se sentindo?"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Publicar</button>
+        </div>
+      </form>
+
+      <div class="posts-list" id="posts-list">
+        <!-- posts inseridos dinamicamente -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================
+       FOOTER / SOBRE
+       - O que somos, missão/valores resumidos
+     ============================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="about">
+        <h3>O que somos</h3>
+        <p>O Jorny é uma plataforma digital criada para ajudar pessoas a cuidarem da saúde mental de forma simples e acessível. Aqui você pode registrar como se sente, acompanhar sua evolução, aprender técnicas rápidas de autocuidado e encontrar contatos de apoio quando precisar.</p>
+        <p class="small"><strong>Missão:</strong> Promover autocuidado e bem-estar emocional de forma acessível.</p>
+        <p class="small"><strong>Visão:</strong> Ser um espaço seguro para compartilhar emoções e crescer emocionalmente.</p>
+      </div>
+
+      <div class="footer-links">
+        <nav>
+          <a href="#support-section">Apoio</a> |
+          <a href="#community-section">Comunidade</a> |
+          <a href="#diary-section">Diário</a>
+        </nav>
+        <small>🌱 Jorny — Cuidando da mente, um dia de cada vez.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================
+       MODAL DE CONFIRMAÇÃO DE EMERGÊNCIA
+     ============================ -->
+  <div id="emergency-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h3>Precisa de ajuda agora?</h3>
+      <p>Se você está em perigo imediato, ligue para os serviços de emergência do seu país agora.</p>
+      <div class="modal-actions">
+        <button id="call-cvv" class="btn danger">Ligar para o CVV — 188</button>
+        <button id="close-emergency" class="btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SCRIPTS
+     ============================ -->
+  <script src="js/main.js"></script>
+</body>
+</html>
