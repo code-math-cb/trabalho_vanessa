@@ -20,6 +20,4 @@ Jorny é um protótipo de plataforma para acompanhar humor diário, oferecer sug
 4. Publique um post na Comunidade.
 5. Botão "Preciso de Ajuda" abre o modal de emergência.
 
-## Observações
-- Em produção, recomenda-se adicionar autenticação, backend seguro e moderação para a comunidade.
-- Integração com APIs de mapa (OpenStreetMap/Google Maps) pode ser feita substituindo o placeholder por um iframe ou componente interativo.
+
