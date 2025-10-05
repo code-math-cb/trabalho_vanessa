@@ -133,6 +133,21 @@ entriesList.addEventListener('click', function (ev) {
   showToast('Entrada excluída.');
 });
 
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // evita o salto seco padrão
+      
+      const alvo = document.querySelector(this.getAttribute('href'));
+      if (alvo) {
+        // Rolagem dinâmica e suave
+        alvo.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
 /* ======== GRÁFICO SIMPLES (Canvas) ========
    - Mostra média diária dos últimos 7 dias
    - Implementação leve sem libs externas
